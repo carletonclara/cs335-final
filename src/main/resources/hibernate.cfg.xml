@@ -32,8 +32,8 @@
         </property>
     </bean>
 
-    <!--  Book DAO Implementation bean.-->
-    <bean id="BookDAOImpl" class="BookDAOImpl">
+    <!--  Address DAO Implementation bean.-->
+    <bean id="AddressDAOImpl" class="AddressDAOImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 

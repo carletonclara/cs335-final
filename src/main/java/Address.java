@@ -23,19 +23,27 @@ public class Address {
     private String state;
 
     @Column
-    private String zipcode;
+    private String zip_code;
 
     public int getId(){ return address_id; }
 
     public String getStreet(){ return shipping_address; }
 
+    public void setStreet(String sa){ this.shipping_address = sa; }
+
     public String getCity() { return city; }
+
+    public void setCity(String c) { this.city = c; }
 
     public String getState() { return state; }
 
-    public CharSequence getZipcode() { return zipcode; }
+    public void setState(String st) { this.state = st; }
+
+    public CharSequence getZipcode() { return zip_code; }
+
+    public void setZipcode(CharSequence zc) { this.zip_code = (String) zc; }
 
     public String toString(){
-        return shipping_address + " " + city + ", " + state + " " + zipcode;
+        return shipping_address + " " + city + ", " + state + " " + zip_code;
     }
 }
