@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--  MySql Data Source bean, with connectionProperties on URL.-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://dany.simmons.edu:3306/33501sp20_carletoc?characterEncoding=UTF-8"/>
+        <property name="username" value="carletoc"/>
+        <property name="password" value="1683864"/>
+    </bean>
+
+    <!--  Hibernate Session Factory bean, registering the Book class.-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>Address</value>
+                <value>Cart</value>
+                <value>Inventory</value>
+                <value>OrderConfirmation</value>
+                <value>User</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--  Book DAO Implementation bean.-->
+    <bean id="BookDAOImpl" class="BookDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+</beans>
